@@ -2,7 +2,6 @@
   "name": "hangman.app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:7090",
   "dependencies": {
     "bootstrap": "^5.2.0",
     "http-proxy-middleware": "^2.0.6",
