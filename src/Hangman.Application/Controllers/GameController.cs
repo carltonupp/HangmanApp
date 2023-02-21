@@ -34,4 +34,12 @@ public class GameController : ControllerBase
         var game = _grains.GetGrain<IGameGrain>(gameId);
         return Ok(await game.GetState());
     }
+
+    [HttpPost("/api/[controller]/{gameId}")]
+    public async Task<IActionResult> Guess(string gameId, [FromBody]GuessModel guess)
+    {
+        var game = _grains.GetGrain<IGameGrain>(gameId);
+        await game.Guess(guess.Letter);
+        return Ok();
+    }
 }

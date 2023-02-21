@@ -1,6 +1,8 @@
 import {LetterTile} from "./LetterTile";
+import {useEffect} from "react";
 
 export function GameBoard(props) {
+    
     return (
         <div>
             <p>Number of guesses: {props.game.numberOfGuesses}</p>
@@ -9,7 +11,10 @@ export function GameBoard(props) {
             })}
             <div>
                 {[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].map(l => {
-                    return <LetterTile value={l} key={l} disabled={isLetterUsed(l, props.game.usedLetters)}/>
+                    return <LetterTile value={l} 
+                                       key={l} 
+                                       disabled={isLetterUsed(l, props.game.usedLetters)} 
+                                       letterSelected={props.letterSelected} />
                 })}
             </div>
         </div>

@@ -12,10 +12,24 @@ export function Game() {
             .then(gameState =>  setValue({ ...value, gameState }));
     }, [gameId])
     
+    const letterSelected = (letter) => {
+        const requestBody = {
+            letter,
+        }
+        
+        fetch(`api/Game/${gameId}`, {
+            body: JSON.stringify(requestBody),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(err => console.error(err))
+    }
+    
     return (
         <div>
             <h2>Game {gameId}</h2>
-            <GameBoard game={value.gameState}/>
+            <GameBoard game={value.gameState} letterSelected={letterSelected} />
         </div>
     )
 }
