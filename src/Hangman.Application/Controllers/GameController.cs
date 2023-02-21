@@ -27,4 +27,11 @@ public class GameController : ControllerBase
 
         return Ok(new CreatedGame(gameId));
     }
+
+    [HttpGet("/api/[controller]/{gameId}")]
+    public async Task<IActionResult> GetGameState(string gameId)
+    {
+        var game = _grains.GetGrain<IGameGrain>(gameId);
+        return Ok(await game.GetState());
+    }
 }
